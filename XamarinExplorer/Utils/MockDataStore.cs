@@ -6,7 +6,7 @@ using Shared;
 
 namespace XamarinExplorer.Services
 {
-	public class MockDataStore : Repository<Item>
+	public class MockDataStore : ToDoItemsRepository
 	{
 		List<Item> items;
 

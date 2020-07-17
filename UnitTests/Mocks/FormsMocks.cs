@@ -68,6 +68,8 @@ namespace UnitTests
 
 		public string RuntimePlatform { get; set; }
 
+		public OSAppTheme RequestedTheme => throw new NotImplementedException();
+
 		public void BeginInvokeOnMainThread(Action action)
 		{
 			if (_invokeOnMainThread == null)
@@ -126,6 +128,16 @@ namespace UnitTests
 		}
 
 		public SizeRequest GetNativeSize(VisualElement view, double widthConstraint, double heightConstraint)
+		{
+			throw new NotImplementedException();
+		}
+
+		public string GetHash(string input)
+		{
+			throw new NotImplementedException();
+		}
+
+		public Color GetNamedColor(string name)
 		{
 			throw new NotImplementedException();
 		}

@@ -36,11 +36,11 @@
 
 `https://my-signalr-functions.azurewebsites.net/`
 
-GET http://localhost:7071/api/HttpGetTrigger
+GET https://my-signalr-functions.azurewebsites.net/api/HttpGetTrigger
 
-POST http://localhost:7071/api/hubs/broadcast/negotiate
+POST https://my-signalr-functions.azurewebsites.net/api/hubs/broadcast/negotiate
 
-POST http://localhost:7071/api/HttpPostTrigger
+POST https://my-signalr-functions.azurewebsites.net/api/HttpPostTrigger
 
     {
         "_t": "MyToDo",
@@ -48,11 +48,11 @@ POST http://localhost:7071/api/HttpPostTrigger
         "IsCompleted": false
     }
 
-PUT http://localhost:7071/api/todo/44bca6da-126e-4168-b000-a5c145ba81db
+PUT https://my-signalr-functions.azurewebsites.net/api/todo/44bca6da-126e-4168-b000-a5c145ba81db
 
 content-type: application/json
 
     {
-        "Title": "Comprar comida",
+        "Title": "Buy food",
         "IsCompleted": true
     }

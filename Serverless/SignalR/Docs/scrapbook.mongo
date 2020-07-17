@@ -1,6 +1,6 @@
 //db.MyToDos.Todos.drop()
 
-db.MyToDos.deleteOne({ "_id" : ObjectId("5e7fb0929206371778868b4e") })
+db.MyToDos.deleteOne({ "_id" : ObjectId("5e7f9189f4ac630024985bda") })
 
 db.MyToDos.insert(
     [{

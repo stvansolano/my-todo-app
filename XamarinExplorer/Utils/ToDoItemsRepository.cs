@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Shared;
@@ -31,6 +33,20 @@ namespace XamarinExplorer
 			var content = new StringContent(JsonConvert.SerializeObject(model), System.Text.Encoding.UTF8, "application/json");
 
 			await GetClient().PostAsync("HttpPostTrigger", content);
+		}
+
+		public async override Task<bool> UpdateAsync(object id, Item item)
+		{
+			if (item == null || id == null || Connectivity.NetworkAccess != NetworkAccess.Internet)
+				return false;
+
+			var serializedItem = JsonConvert.SerializeObject(item);
+			var buffer = Encoding.UTF8.GetBytes(serializedItem);
+			var byteContent = new ByteArrayContent(buffer);
+
+			var response = await GetClient().PutAsync(new Uri($"/api/todo/{id}"), byteContent);
+
+			return response.IsSuccessStatusCode;
 		}
 	}
 }

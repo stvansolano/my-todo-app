@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace XamarinExplorer.Services
 {
-	public class Repository<T> : IRepository<T>
+	public abstract class Repository<T> : IRepository<T>
 		where T : class
 	{
 		IEnumerable<T> _items;
@@ -43,6 +43,8 @@ namespace XamarinExplorer.Services
 			return null;
 		}
 
+		public abstract Task<bool> UpdateAsync(object id, T item);
+
 		public virtual async Task<bool> AddAsync(T item)
 		{
 			if (item == null || Connectivity.NetworkAccess != NetworkAccess.Internet)
@@ -55,19 +57,6 @@ namespace XamarinExplorer.Services
 			return response.IsSuccessStatusCode;
 		}
 
-		public virtual async Task<bool> UpdateAsync(object id, T item)
-		{
-			if (item == null || id == null || Connectivity.NetworkAccess != NetworkAccess.Internet)
-				return false;
-
-			var serializedItem = JsonConvert.SerializeObject(item);
-			var buffer = Encoding.UTF8.GetBytes(serializedItem);
-			var byteContent = new ByteArrayContent(buffer);
-
-			var response = await GetClient().PutAsync(new Uri($"/api/todo/{id}"), byteContent);
-
-			return response.IsSuccessStatusCode;
-		}
 
 		public virtual async Task<bool> DeleteAsync(object id)
 		{
