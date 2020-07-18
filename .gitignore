@@ -330,4 +330,5 @@ ASALocalRun/
 .mfractor/
 
 MyToDoApp/Secrets.json
+Serverless/SignalR/local.settings-backup.json
 Serverless/SignalR/local.settings.json
