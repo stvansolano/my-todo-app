@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="MyToDoApp.Views.HomePage"
+                  xmlns:local="clr-namespace:MyToDoApp.Views">
+    <MasterDetailPage.ToolbarItems>
+        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh">
+             <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder" Android="Secondary" Default="Default" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+        <ToolbarItem Text="About">
+             <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder" Android="Secondary" Default="Default" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+    </MasterDetailPage.ToolbarItems>
+
+    <MasterDetailPage.Detail>
+        <local:ItemsPage />
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

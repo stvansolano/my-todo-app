@@ -20,7 +20,7 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "xamarinexplorer:dev",
+                "tag": "MyToDoApp:dev",
                 "target": "base",
                 "dockerfile": "${workspaceFolder}/Server/MyWebAPI/Dockerfile",
                 "context": "${workspaceFolder}",
@@ -37,7 +37,7 @@
                 "build"
             ],
             "dockerBuild": {
-                "tag": "xamarinexplorer:latest",
+                "tag": "MyToDoApp:latest",
                 "dockerfile": "${workspaceFolder}/Server/MyWebAPI/Dockerfile",
                 "context": "${workspaceFolder}",
                 "pull": true

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="MyToDoApp.Views.ItemsPage" Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="RefreshToolbar" Text="Refresh">
+             <ToolbarItem.Order>
+                <OnPlatform x:TypeArguments="ToolbarItemOrder" Android="Secondary" Default="Default" />
+            </ToolbarItem.Order>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+   <ContentPage.Content xmlns:views="clr-namespace:MyToDoApp.Views">
+        <StackLayout Orientation="Vertical" VerticalOptions="Fill">
+            <Label Text="{Binding StatusText}" HorizontalOptions="End" Margin="5" />
+
+            <Grid Margin="10">
+                <Entry x:Name="ToDoEntry" Placeholder="To do +"
+                       Text="{Binding ToDoText, Mode=TwoWay}"
+                       MinimumWidthRequest="200" Margin="0,0,80,0" HeightRequest="40" />
+                <Button x:Name="AddButton" FontSize="{x:OnPlatform iOS=22, Android=20}" 
+                        Command="{Binding AddCommand}" Margin="{x:OnPlatform Android=12, iOS=5}"
+                        WidthRequest="60" MinimumHeightRequest="120" HeightRequest="{x:OnPlatform Android=80, iOS=50}"
+                        Text="+" BackgroundColor="{StaticResource ActionColor}"
+                        TextColor="White" HorizontalOptions="End" VerticalOptions="Fill"
+                        />
+            </Grid>
+            
+           <ListView x:Name="ItemsListView" 
+                      ItemsSource="{Binding Items}" 
+                      VerticalOptions="FillAndExpand" 
+                      HasUnevenRows="true" 
+                      RefreshCommand="{Binding LoadItemsCommand}" 
+                      IsPullToRefreshEnabled="true" 
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}" 
+                      CachingStrategy="RecycleElement"
+                      android:ListView.IsFastScrollEnabled="True"
+                      SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <views:CardView BindingContext="{Binding}"
+                                            HeightRequest="{x:OnPlatform iOS=60, Android=80}">
+                                <Grid Padding="10" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Title}" VerticalOptions="Center" VerticalTextAlignment="Center" LineBreakMode="TailTruncation" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="16" />
+                                    <CheckBox IsChecked="{Binding IsCompleted}" CheckedChanged="CheckBox_CheckedChanged"
+                                              HorizontalOptions="End" />
+                                </Grid>
+                            </views:CardView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
